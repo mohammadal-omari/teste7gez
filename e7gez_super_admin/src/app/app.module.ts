@@ -13,12 +13,16 @@ import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { MaterialModule } from "./shared/material/material.module";
+import { UserManagmentComponent } from './pages/user/user-managment/user-managment.component';
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    UserManagmentComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -30,7 +34,9 @@ import { ReactiveFormsModule } from "@angular/forms";
     ToastrModule.forRoot(),
     FooterModule,
     FixedPluginModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

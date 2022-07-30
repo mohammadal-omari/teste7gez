@@ -6,12 +6,14 @@ import { Injector } from "@angular/core";
   template: ''
 })
 export class BaseComponent implements OnInit {
-  private _snackBar: MatSnackBar;
+  public _snackBar: MatSnackBar;
+  public keyErrors: Array<any> = [];
   injector = Injector.create([
     { provide: MatSnackBar, deps: [] },
   ]);
   constructor() {
     this._snackBar = this.injector.get(MatSnackBar);
+    this.keyErrors= new Array<any>();
   }
 
   ngOnInit(): void {

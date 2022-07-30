@@ -16,6 +16,8 @@ import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component'
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VendorManagmentComponent } from 'app/pages/vendor/vendor-managment/vendor-managment.component';
+import { MaterialModule } from 'app/shared/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { VendorManagmentComponent } from 'app/pages/vendor/vendor-managment/vend
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    HttpClientModule
   ],
   declarations: [
     DashboardComponent,

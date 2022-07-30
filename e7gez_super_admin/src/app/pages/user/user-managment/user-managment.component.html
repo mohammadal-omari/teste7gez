@@ -1,6 +1,5 @@
 <div class="row">
-
-  <div class="col-md-4">
+  <!-- <div class="col-md-4"> -->
     <!-- <div class="card card-user">
       <div class="image">
         <img src="assets/img/damir-bosnjak.jpg" alt="...">
@@ -28,26 +27,26 @@
             <div class="col-lg-3 col-md-6 col-6 ml-auto">
               <h5>12
                 <br>
-                <small>Followers</small>
+                <small>Files</small>
               </h5>
             </div>
             <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-              <h5>50
+              <h5>2GB
                 <br>
-                <small>Likes</small>
+                <small>Used</small>
               </h5>
             </div>
             <div class="col-lg-3 mr-auto">
-              <h5>9
+              <h5>24,6$
                 <br>
-                <small>Posts</small>
+                <small>Spent</small>
               </h5>
             </div>
           </div>
         </div>
       </div>
     </div> -->
-     <div class="card">
+    <!-- <div class="card">
       <div class="card-header">
         <h4 class="card-title">Team Members</h4>
       </div>
@@ -112,78 +111,88 @@
           </li>
         </ul>
       </div>
-    </div>
-  </div>
-  <div class="col-md-8">
+    </div> -->
+  <!-- </div> -->
+  <div class="col-md-6">
     <div class="card card-user">
       <div class="card-header">
-        <h5 class="card-title">Vendor details</h5>
+        <h5 class="card-title">Edit Profile</h5>
       </div>
       <div class="card-body">
-        <form [formGroup]="vendorForm">
+        <form [formGroup]="userForm">
           <div class="row">
             <div class="col-md-5 pr-1">
               <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control"  placeholder="Name" formControlName="name">
+                <label>First name</label>
+                <input type="text" class="form-control"  placeholder="firs tname" formControlName="firstname">
               </div>
             </div>
-            <div class="col-md-3 px-1">
+            <div class="col-md-5 px-1">
               <div class="form-group">
-                <label>Country</label>
-                <input type="text" class="form-control" placeholder="Country" formControlName="country">
+                <label>last name</label>
+                <input type="text" class="form-control" placeholder="last name" formControlName="lastname">
               </div>
             </div>
-            <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <label for="exampleInputEmail1">City</label>
-                <input type="email" class="form-control" placeholder="City" formControlName="city">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 pr-1">
-              <div class="form-group">
-                <label>Menu url</label>
-                <input type="text" class="form-control" placeholder="Menu url" formControlName="menu">
-              </div>
-            </div>
-            <div class="col-md-6 pl-1">
-              <div class="form-group">
-                <label>Category name</label>
-                <input type="text" class="form-control" placeholder="Category name" formControlName="categoryName">
-              </div>
+              <div class="col-md-5 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5 pr-1">
               <div class="form-group">
-                <label>Location link</label>
-                <input type="text" class="form-control" placeholder="Location link" formControlName="locationUrl">
+                <label>Phone Number</label>
+                <input type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNumber">
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 pr-1">
+            <div class="col-md-5 pl-1">
               <div class="form-group">
-                <label>Vendor Number</label>
-                <input type="text" class="form-control" placeholder="Vendor Number" formControlName="userNumber" disabled="true">
-              </div>
-            </div>
-            <div class="col-md-4 px-1">
-              <div class="form-group">
-                <label>Point</label>
-                <input type="number" class="form-control" placeholder="Point" formControlName="point" disabled="true">
+                <label>User Number</label>
+                <input type="text" class="form-control" placeholder="User Number" formControlName="userNumber">
               </div>
             </div>
             <!-- <div class="col-md-4 pl-1">
               <div class="form-group">
-                <label>Postal Code</label>
-                <input type="number" class="form-control" placeholder="ZIP Code">
+                <label>Password</label>
+                <input type="text" class="form-control" placeholder="Password" formControlName="password">
               </div>
             </div> -->
           </div>
+           <div class="row">
+            <div class="col-md-12">
+              <mat-form-field appearance="fill">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role" name="food">
+                  <mat-option *ngFor="let role of roles" [value]="role.value">
+                    {{role.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
           <!-- <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" placeholder="City" formControlName="Melbourne">
+              </div>
+            </div>
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <label>Country</label>
+                <input type="text" class="form-control" placeholder="Country" formControlName="Australia">
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Postal Code</label>
+                <input type="number" class="form-control" placeholder="ZIP Code">
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label>About Me</label>
@@ -191,25 +200,12 @@
               </div>
             </div>
           </div> -->
-          <mat-form-field appearance="fill">
-            <mat-label>Toppings</mat-label>
-            <mat-select [formControl]="toppings" multiple>
-              <mat-select-trigger>
-                {{toppings.value?.[0] || ''}}
-                <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-            </mat-select>
-          </mat-form-field>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button (click)="save()" type="submit" class="btn btn-primary btn-round">Save</button>
+              <button (click)="save()" type="submit" class="btn btn-primary btn-round">{{mode==0?'Save':'Update'}}</button>
             </div>
           </div>
         </form>
-
       </div>
     </div>
   </div>
