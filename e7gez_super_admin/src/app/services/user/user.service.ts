@@ -14,4 +14,16 @@ export class UserService {
   create(userDto: User): any {
     return this.http.post<{message: any}>(Controllers.createUser,{userDto});
   }
+
+  update(userDto: User): any {
+    return this.http.post<{message: any}>(Controllers.userUpdate,{userDto});
+  }
+
+  getAllUsers(): any {
+    return this.http.get<{users: User[]}>(Controllers.getUser);
+  }
+
+  getById(id: any): any {
+    return this.http.get<{users: User}>(Controllers.getUser + '/' + id);
+  }
 }

@@ -1,3 +1,10 @@
 .icons {
   cursor: pointer;
 }
+.search .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.search-button {
+  font-size: 14px;
+  margin-left: 8px;
+}

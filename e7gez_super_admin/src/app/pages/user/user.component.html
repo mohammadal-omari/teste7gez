@@ -2,7 +2,45 @@
   <div class="col-md-12">
     <div class="row">
       <div class="update ml-auto mr-auto">
-        <button type="submit" class="btn btn-primary btn-round" [routerLink]="['/user-managment']" routerLinkActive="router-link-active" >Add user <i class="fa fa-plus-circle"></i></button>
+        <button type="submit" class="btn btn-primary btn-round" [routerLink]="['/user-managment']"
+          routerLinkActive="router-link-active">Add user <i class="fa fa-plus-circle"></i></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="search">
+        <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="Rolevalue" name="food">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.value}}
+            </mat-option>
+          </mat-select>
+          <button *ngIf="Rolevalue" matSuffix mat-icon-button aria-label="Clear" (click)="Rolevalue=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="emailValue">
+          <button *ngIf="emailValue" matSuffix mat-icon-button aria-label="Clear" (click)="emailValue=''">
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- <mat-icon matSuffix>email</mat-icon> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>User Number</mat-label>
+          <input matInput type="number" placeholder="User Number" [(ngModel)]="IDValue">
+          <button *ngIf="IDValue" matSuffix mat-icon-button aria-label="Clear" (click)="IDValue=0">
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- <mat-icon matSuffix>format_list_numbered</mat-icon> -->
+        </mat-form-field>
+        <button (click)="filter()" mat-mini-fab color="primary" class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button (click)="clear()" mat-mini-fab color="primary" class="search-button">
+          <mat-icon>clear</mat-icon>
+        </button>
       </div>
     </div>
     <div class="card">
@@ -14,46 +52,52 @@
           <table class="table">
             <thead class=" text-primary">
               <th>
-                Name
+                First Name
               </th>
               <th>
-                Country
+                Last Name
               </th>
               <th>
-                City
+                Email
               </th>
-              <th >
-                menu
+              <th>
+                Role
               </th>
-              <th >
-                categoryName
+              <th>
+                Phone Number
               </th>
-              <th >
-                itemNumber
+              <th>
+                User Number
+              </th>
+              <th>
+                Date Created
               </th>
               <th class="text-right">
                 Edit
               </th>
             </thead>
             <tbody>
-              <tr *ngFor="let item of items">
+              <tr *ngFor="let item of usersFiltered">
                 <td>
-                  {{item.Name}}
+                  {{item.firstname}}
                 </td>
                 <td>
-                  {{item.City}}
+                  {{item.lastname}}
                 </td>
                 <td>
-                  {{item.Country}}
+                  {{item.email}}
                 </td>
                 <td>
-                  {{item.menu}}
+                  {{item.role}}
                 </td>
                 <td>
-                  {{item.categoryName}}
+                  {{item.phoneNumber}}
                 </td>
                 <td>
-                  {{item.itemNumber}}
+                  {{item.userNumber}}
+                </td>
+                <td>
+                  {{item.dateCreated | date: 'medium'}}
                 </td>
                 <td class="text-right icons">
                   <i class="fa fa-edit fa-lg" (click)="edit(item)"></i>
