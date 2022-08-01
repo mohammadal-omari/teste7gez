@@ -8,7 +8,7 @@ export class Item {
   menu?: string;
   categoryName?: string;
   point?: number;
-  userNumber?: number;
+  itemNumber?: number;
   dateCreated: Date;
   location: string;
 }

@@ -1,28 +1,51 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Item } from 'app/core/models/item';
+import { VendorService } from 'app/services/vendor/vendor.service';
+import { BaseComponent } from '../base.component';
 
 
 
 @Component({
-    selector: 'table-cmp',
-    moduleId: module.id,
-    templateUrl: 'vendor.component.html',
-    styleUrls: ['vendor.component.css']
+  selector: 'table-cmp',
+  moduleId: module.id,
+  templateUrl: 'vendor.component.html',
+  styleUrls: ['vendor.component.css']
 })
 
-export class VendorComponent implements OnInit{
-    public items: any;
-    ngOnInit(){
-        this.items = [
-        {'Name':'Dakota Rice',  'City':'Curaçao', 'Country':'Netherlands', 'menu':'Malawi', 'categoryName':'Feldkirchen', 'itemNumber':'Overland Pa'},
-        {'Name':'Dakota Rice',  'City':'Curaçao', 'Country':'Netherlands', 'menu':'Malawi', 'categoryName':'Feldkirchen', 'itemNumber':'Overland Pa'},
-        {'Name':'Dakota Rice',  'City':'Curaçao', 'Country':'Netherlands', 'menu':'Malawi', 'categoryName':'Feldkirchen', 'itemNumber':'Overland Pa'},
-        {'Name':'Dakota Rice',  'City':'Curaçao', 'Country':'Netherlands', 'menu':'Malawi', 'categoryName':'Feldkirchen', 'itemNumber':'Overland Pa'},
-        {'Name':'Dakota Rice',  'City':'Curaçao', 'Country':'Netherlands', 'menu':'Malawi', 'categoryName':'Feldkirchen', 'itemNumber':'Overland Pa'},
-        {'Name':'Dakota Rice',  'City':'Curaçao', 'Country':'Netherlands', 'menu':'Malawi', 'categoryName':'Feldkirchen', 'itemNumber':'Overland Pa'}
-            ]
-    }
+export class VendorComponent extends BaseComponent implements OnInit {
+  public items: Item[] = [];
 
-    edit(item: any): any{
+  public itemsFiltered: Item[] = [];
 
-    }
+  nameValue = '';
+  IDValue = 0;
+  Rolevalue = '';
+
+  constructor(private venderServices: VendorService, private router: Router) {
+    super()
+  }
+
+  ngOnInit() {
+    this.loadData()
+  }
+
+  loadData() {
+    this.venderServices.getAllItems().subscribe(res => {
+      this.items = res.items;
+      this.itemsFiltered = this.items;
+    })
+  }
+
+  edit(item: Item): any {
+    this.router.navigate(['/vendor-managment', item.itemNumber]);
+  }
+
+  filter(): any {
+    this.itemsFiltered = this.items.filter(item => item.itemNumber==this.IDValue || item.name==this.nameValue);
+  }
+
+  clear(): any{
+    this.itemsFiltered = this.items;
+  }
 }

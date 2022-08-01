@@ -5,6 +5,43 @@
         <button type="submit" class="btn btn-primary btn-round" [routerLink]="['/vendor-managment']" routerLinkActive="router-link-active" >Add vendor <i class="fa fa-plus-circle"></i></button>
       </div>
     </div>
+    <div class="row">
+      <div class="search">
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="Rolevalue" name="food">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.value}}
+            </mat-option>
+          </mat-select>
+          <button *ngIf="Rolevalue" matSuffix mat-icon-button aria-label="Clear" (click)="Rolevalue=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="nameValue">
+          <button *ngIf="nameValue" matSuffix mat-icon-button aria-label="Clear" (click)="nameValue=''">
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- <mat-icon matSuffix>email</mat-icon> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Item Number</mat-label>
+          <input matInput type="number" placeholder="User Number" [(ngModel)]="IDValue">
+          <button *ngIf="IDValue" matSuffix mat-icon-button aria-label="Clear" (click)="IDValue=0">
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- <mat-icon matSuffix>format_list_numbered</mat-icon> -->
+        </mat-form-field>
+        <button (click)="filter()" mat-mini-fab color="primary" class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button (click)="clear()" mat-mini-fab color="primary" class="search-button">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">Vendors </h4>
@@ -23,34 +60,40 @@
                 City
               </th>
               <th >
-                menu
+                Menu
               </th>
               <th >
-                categoryName
+                CategoryName
               </th>
               <th >
-                itemNumber
+                Date Created
+              </th>
+              <th >
+                tIem Number
               </th>
               <th class="text-right">
                 Edit
               </th>
             </thead>
             <tbody>
-              <tr *ngFor="let item of items">
+              <tr *ngFor="let item of itemsFiltered">
                 <td>
-                  {{item.Name}}
+                  {{item.name}}
                 </td>
                 <td>
-                  {{item.City}}
+                  {{item.city}}
                 </td>
                 <td>
-                  {{item.Country}}
+                  {{item.country}}
                 </td>
                 <td>
                   {{item.menu}}
                 </td>
                 <td>
                   {{item.categoryName}}
+                </td>
+                <td>
+                  {{item.dateCreated | date: 'medium'}}
                 </td>
                 <td>
                   {{item.itemNumber}}
