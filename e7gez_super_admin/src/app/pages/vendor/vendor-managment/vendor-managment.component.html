@@ -64,7 +64,7 @@
                 {{item.firstname}}
                 <br />
                 <span class="text-muted">
-                  <small>Offline</small>
+                  <small>{{item.isActive?'Online':'Offline'}}</small>
                 </span>
               </div>
               <div class="col-md-3 col-3 text-right">
@@ -171,7 +171,7 @@
             </div>
           </div>
         </form>
-
+        <button mat-raised-button color="primary" (click)="goBack()">Back</button>
       </div>
     </div>
   </div>

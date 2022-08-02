@@ -72,6 +72,12 @@
               <th>
                 Date Created
               </th>
+              <!-- <th>
+                Is active
+              </th> -->
+              <th class="text-right">
+                Deactive
+              </th>
               <th class="text-right">
                 Edit
               </th>
@@ -98,6 +104,12 @@
                 </td>
                 <td>
                   {{item.dateCreated | date: 'medium'}}
+                </td>
+                <!-- <td>
+                  {{item.isActive?'Active': 'Not'}}
+                </td> -->
+                <td class="text-right icons">
+                  <mat-slide-toggle (click)="deactivate(item)" [(ngModel)]="item.isActive"></mat-slide-toggle>
                 </td>
                 <td class="text-right icons">
                   <i class="fa fa-edit fa-lg" (click)="edit(item)"></i>

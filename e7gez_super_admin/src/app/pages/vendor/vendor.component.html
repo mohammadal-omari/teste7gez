@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <div class="row">
       <div class="update ml-auto mr-auto">
-        <button type="submit" class="btn btn-primary btn-round" [routerLink]="['/vendor-managment']" routerLinkActive="router-link-active" >Add vendor <i class="fa fa-plus-circle"></i></button>
+        <button type="submit" class="btn btn-primary btn-round" [routerLink]="['/vendor-managment']"
+          routerLinkActive="router-link-active">Add vendor <i class="fa fa-plus-circle"></i></button>
       </div>
     </div>
     <div class="row">
@@ -59,17 +60,29 @@
               <th>
                 City
               </th>
-              <th >
+              <th>
                 Menu
               </th>
-              <th >
+              <th>
+                LocationUrl
+              </th>
+              <th>
+                Point
+              </th>
+              <th>
                 CategoryName
               </th>
-              <th >
+              <th>
                 Date Created
               </th>
-              <th >
-                tIem Number
+              <th>
+                Item Number
+              </th>
+              <!-- <th>
+                Is active
+              </th> -->
+              <th class="text-right">
+                Deactive
               </th>
               <th class="text-right">
                 Edit
@@ -87,7 +100,25 @@
                   {{item.country}}
                 </td>
                 <td>
-                  {{item.menu}}
+                  <mat-form-field appearance="outline" [style.width.%]="100">
+                    <mat-label>Menu</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="item.menu">
+                    <button mat-icon-button matSuffix [cdkCopyToClipboard]="item.menu">
+                      <mat-icon>file_copy</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance="outline" [style.width.%]="100">
+                    <mat-label>locationUrl</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="item.locationUrl">
+                    <button mat-icon-button matSuffix [cdkCopyToClipboard]="item.locationUrl">
+                      <mat-icon>file_copy</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+                <td>
+                  {{item.point}}
                 </td>
                 <td>
                   {{item.categoryName}}
@@ -97,6 +128,12 @@
                 </td>
                 <td>
                   {{item.itemNumber}}
+                </td>
+                <!-- <td>
+                  {{item.isActive?'Active': 'Not'}}
+                </td> -->
+                <td class="text-right icons">
+                  <mat-slide-toggle (click)="deactivate(item)" [(ngModel)]="item.isActive"></mat-slide-toggle>
                 </td>
                 <td class="text-right icons">
                   <i class="fa fa-edit fa-lg" (click)="edit(item)"></i>

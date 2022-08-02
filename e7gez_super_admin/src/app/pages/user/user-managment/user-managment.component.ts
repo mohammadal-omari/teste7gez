@@ -22,7 +22,7 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
   roles = [{value: ROLE.ADMIN},{value: ROLE.USER}];
   heroService: any;
   hero: any;
-  constructor(location: Location,private fb: FormBuilder,private toastr: ToastrService,private userServices: UserService, private router: ActivatedRoute) {
+  constructor(location: Location,private router: Router,private fb: FormBuilder,private toastr: ToastrService,private userServices: UserService, private activatedRoute: ActivatedRoute) {
     super()
     this.location = location;
 
@@ -35,7 +35,7 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
 
 
   private getUserById() {
-    const id = Number(this.router.snapshot.paramMap.get('id'));
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(id);
     if (id != 0) {
       this.mode = 1;
@@ -104,7 +104,7 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
           );
       });
     }
-
+    this.router.navigate(['/user']);
   }
 
   goBack(): void {

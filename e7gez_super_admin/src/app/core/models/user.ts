@@ -11,4 +11,6 @@ export class User {
   point?: number;
   userNumber?: number;
   dateCreated: Date;
+  isActive: boolean;
+
 }

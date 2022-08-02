@@ -4,35 +4,52 @@ import { User } from 'app/core/models/user';
 import { UserService } from 'app/services/user/user.service';
 import { ROLE } from 'app/shared/enums/roles';
 import { BaseComponent } from '../base.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-    selector: 'user-cmp',
-    moduleId: module.id,
-    templateUrl: 'user.component.html',
-    styleUrls: ['user.component.css']
+  selector: 'user-cmp',
+  moduleId: module.id,
+  templateUrl: 'user.component.html',
+  styleUrls: ['user.component.css']
 })
 
-export class UserComponent extends BaseComponent implements OnInit{
+export class UserComponent extends BaseComponent implements OnInit {
 
-  roles = [{value: ROLE.ADMIN},{value: ROLE.USER}];
+  roles = [{ value: ROLE.ADMIN }, { value: ROLE.USER }];
   public users: User[] = [];
   public usersFiltered: User[] = [];
-
+  isChecked = true;
   emailValue = '';
   IDValue = 0;
   Rolevalue = '';
 
-  constructor(private userServices: UserService, private router: Router) {
+  constructor(private userServices: UserService, private router: Router,private toastr: ToastrService) {
     super();
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getAllUsers();
   }
 
-  edit(user: User): any{
+  edit(user: User): any {
     this.router.navigate(['/user-managment', user.userNumber]);
+  }
+
+  deactivate(user: User): any {
+    user.isActive = !user.isActive;
+
+    this.userServices.update(user)
+    .subscribe(arg => {
+      this.getAllUsers();
+      this.toastr.success(
+        arg.message,"",{
+          timeOut: 4000,
+          enableHtml: false,
+          closeButton: true,
+        }
+        );
+    });
   }
 
   getAllUsers(): any {
@@ -47,10 +64,10 @@ export class UserComponent extends BaseComponent implements OnInit{
   filter(): any {
     console.log(this.emailValue);
 
-    this.usersFiltered = this.users.filter(user => user.userNumber==this.IDValue || user.email==this.emailValue || user.role==this.Rolevalue)
+    this.usersFiltered = this.users.filter(user => user.userNumber == this.IDValue || user.email == this.emailValue || user.role == this.Rolevalue)
   }
 
-  clear(): any{
+  clear(): any {
     this.usersFiltered = this.users;
   }
 }

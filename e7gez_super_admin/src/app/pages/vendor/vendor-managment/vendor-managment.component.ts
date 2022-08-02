@@ -1,6 +1,7 @@
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'app/core/models/item';
 import { User } from 'app/core/models/user';
 import { BaseComponent } from 'app/pages/base.component';
@@ -12,10 +13,12 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-vendor-managment',
   templateUrl: './vendor-managment.component.html',
+  providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
+
   styleUrls: ['./vendor-managment.component.css']
 })
 export class VendorManagmentComponent extends BaseComponent implements OnInit {
-
+  location: Location;
   vendorForm: FormGroup;
   mode: number = 0;
   itemDto: Item;
@@ -24,8 +27,9 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
   // user = new FormControl('');
 
   users: User[] = [];
-  constructor(private router: ActivatedRoute,private userServices: UserService,private vendorServices: VendorService, private fb: FormBuilder, private toastr: ToastrService) {
+  constructor(location: Location,private activatedRoute: ActivatedRoute,private userServices: UserService,private vendorServices: VendorService, private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     super()
+    this.location = location;
   }
 
   ngOnInit(): void {
@@ -41,7 +45,7 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
   }
 
   private getUserById() {
-    const id = Number(this.router.snapshot.paramMap.get('id'));
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(id);
     if (id != 0) {
       this.mode = 1;
@@ -118,7 +122,10 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
         );
       })
     }
-
+    this.router.navigate(['/vendor']);
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 }

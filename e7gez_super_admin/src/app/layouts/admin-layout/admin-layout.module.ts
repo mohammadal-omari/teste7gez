@@ -18,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VendorManagmentComponent } from 'app/pages/vendor/vendor-managment/vendor-managment.component';
 import { MaterialModule } from 'app/shared/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule
   ],
   declarations: [
     DashboardComponent,

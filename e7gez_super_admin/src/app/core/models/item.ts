@@ -11,4 +11,5 @@ export class Item {
   itemNumber?: number;
   dateCreated: Date;
   location: string;
+  isActive: boolean;
 }

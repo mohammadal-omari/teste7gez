@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "./shared/material/material.module";
 import { UserManagmentComponent } from './pages/user/user-managment/user-managment.component';
 import { HttpClientModule } from "@angular/common/http";
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { HttpClientModule } from "@angular/common/http";
     FixedPluginModule,
     ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
