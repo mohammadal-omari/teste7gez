@@ -6,7 +6,7 @@ export class Item {
   country: string;
   city?: string;
   menu?: string;
-  categoryName?: string;
+  categoryName?: Array<string>;
   point?: number;
   itemNumber?: number;
   dateCreated: Date;

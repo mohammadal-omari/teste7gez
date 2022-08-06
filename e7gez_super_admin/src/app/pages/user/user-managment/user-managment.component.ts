@@ -20,8 +20,7 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
   mode: number = 0;
   userDto: User;
   roles = [{value: ROLE.ADMIN},{value: ROLE.USER}];
-  heroService: any;
-  hero: any;
+
   constructor(location: Location,private router: Router,private fb: FormBuilder,private toastr: ToastrService,private userServices: UserService, private activatedRoute: ActivatedRoute) {
     super()
     this.location = location;
@@ -71,6 +70,7 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
         timeOut: 4000,
         enableHtml: false,
         closeButton: true,
+        positionClass: "toast-" + 'top' + "-" + 'right',
         toastClass: "alert alert-danger alert-with-icon",
 
       }
@@ -89,6 +89,9 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
             timeOut: 4000,
             enableHtml: false,
             closeButton: true,
+            positionClass: "toast-" + 'top' + "-" + 'right',
+            toastClass: "alert alert-success alert-with-icon",
+
           }
           );
       });

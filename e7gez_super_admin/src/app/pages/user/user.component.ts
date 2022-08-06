@@ -47,6 +47,8 @@ export class UserComponent extends BaseComponent implements OnInit {
           timeOut: 4000,
           enableHtml: false,
           closeButton: true,
+          toastClass: "alert alert-success alert-with-icon",
+          positionClass: "toast-" + 'top' + "-" + 'right'
         }
         );
     });
@@ -64,7 +66,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   filter(): any {
     console.log(this.emailValue);
 
-    this.usersFiltered = this.users.filter(user => user.userNumber == this.IDValue || user.email == this.emailValue || user.role == this.Rolevalue)
+    this.usersFiltered = this.users.filter(user => user.userNumber == this.IDValue || user.email.search(this.emailValue)!=-1 || user.role == this.Rolevalue)
   }
 
   clear(): any {

@@ -48,6 +48,8 @@ export class VendorComponent extends BaseComponent implements OnInit {
           timeOut: 4000,
           enableHtml: false,
           closeButton: true,
+          toastClass: "alert alert-success alert-with-icon",
+          positionClass: "toast-" + 'top' + "-" + 'right'
         }
         );
     });
@@ -58,7 +60,7 @@ export class VendorComponent extends BaseComponent implements OnInit {
   }
 
   filter(): any {
-    this.itemsFiltered = this.items.filter(item => item.itemNumber==this.IDValue || item.name==this.nameValue);
+    this.itemsFiltered = this.items.filter(item => item.itemNumber==this.IDValue || item.name.search(this.nameValue)!=-1);
   }
 
   clear(): any{

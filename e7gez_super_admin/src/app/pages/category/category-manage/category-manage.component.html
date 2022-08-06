@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Category Details</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="categoryForm">
+          <div class="row">
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Category Name</label>
+                <input type="text" class="form-control"  placeholder="Name" formControlName="categoryName">
+              </div>
+            </div>
+            <div class="col-md-3 px-1">
+              <div class="form-group">
+                <label>Category Number</label>
+                <input type="number" class="form-control" placeholder="Category Number" formControlName="categoryNumber">
+              </div>
+            </div>
+
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>categoryCode</mat-label>
+            <mat-select formControlName="categoryCode" multiple (selectionChange)="selectedCode($event)">
+              <mat-select-trigger>
+                {{categoryForm.get('categoryCode').value?.[0] || ''}}
+                <span *ngIf="(categoryForm.get('categoryCode').value?.length || 0) > 1" class="example-additional-selection">
+                  (+{{(categoryForm.get('categoryCode').value?.length || 0) - 1}} {{categoryForm.get('categoryCode').value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let code of CategoryCodes" [value]="code.value">{{code.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button (click)="save()" type="submit" class="btn btn-primary btn-round">Save</button>
+            </div>
+          </div>
+        </form>
+        <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+      </div>
+    </div>
+  </div>
+</div>

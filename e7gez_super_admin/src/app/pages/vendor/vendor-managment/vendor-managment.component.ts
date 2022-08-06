@@ -2,9 +2,11 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from 'app/core/models/category';
 import { Item } from 'app/core/models/item';
 import { User } from 'app/core/models/user';
 import { BaseComponent } from 'app/pages/base.component';
+import { CategoryService } from 'app/services/category/category.service';
 import { UserService } from 'app/services/user/user.service';
 import { VendorService } from 'app/services/vendor/vendor.service';
 import { ROLE } from 'app/shared/enums/roles';
@@ -27,7 +29,9 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
   // user = new FormControl('');
 
   users: User[] = [];
-  constructor(location: Location,private activatedRoute: ActivatedRoute,private userServices: UserService,private vendorServices: VendorService, private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
+  categories: Category[] = [];
+
+  constructor(private categoryService: CategoryService, location: Location,private activatedRoute: ActivatedRoute,private userServices: UserService,private vendorServices: VendorService, private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     super()
     this.location = location;
   }
@@ -35,7 +39,14 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.createvendorForm();
     this.getAllAdmin();
-    this.getUserById()
+    this.getUserById();
+    this.getCategroies();
+  }
+
+  getCategroies() {
+    this.categoryService.getAllCategories().subscribe(res => {
+      this.categories = res.categories;
+    })
   }
 
   getAllAdmin() {
@@ -92,6 +103,7 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
         enableHtml: false,
         closeButton: true,
         toastClass: "alert alert-danger alert-with-icon",
+        positionClass: "toast-" + 'top' + "-" + 'right'
 
       }
       );
@@ -108,6 +120,8 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
           timeOut: 4000,
           enableHtml: false,
           closeButton: true,
+          toastClass: "alert alert-info alert-with-icon",
+          positionClass: "toast-" + 'top' + "-" + 'right'
         }
         );
       })
@@ -118,6 +132,8 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
           timeOut: 4000,
           enableHtml: false,
           closeButton: true,
+          toastClass: "alert alert-success alert-with-icon",
+          positionClass: "toast-" + 'top' + "-" + 'right'
         }
         );
       })

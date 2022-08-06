@@ -10,12 +10,14 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { VendorManagmentComponent } from 'app/pages/vendor/vendor-managment/vendor-managment.component';
 import { UserManagmentComponent } from 'app/pages/user/user-managment/user-managment.component';
+import { CategoryManageComponent } from 'app/pages/category/category-manage/category-manage.component';
+import { CategoryComponent } from 'app/pages/category/category.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
     { path: 'vendor',          component: VendorComponent },
-    { path: 'typography',     component: TypographyComponent },
+    { path: 'categories',     component: CategoryComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
@@ -23,5 +25,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'vendor-managment/:id',  component: VendorManagmentComponent },
     { path: 'user-managment/:id',  component: UserManagmentComponent },
     { path: 'user-managment',  component: UserManagmentComponent },
+    { path: 'category-managment/:id',  component: CategoryManageComponent },
+    { path: 'category-managment',  component: CategoryManageComponent },
     { path: 'upgrade',        component: UpgradeComponent }
 ];

@@ -7,6 +7,8 @@ export const Controllers = {
   createItem : environment.api+'/item/create',
   getItem : environment.api+'/item/get',
   itemUpdate : environment.api+'/item/update',
-
+  categoryUpdate : environment.api+'/category/update',
+  createCategory : environment.api+'/category/create',
+  getCategory : environment.api+'/category/get',
   user : '/user/',
 };

@@ -17,13 +17,19 @@ import { MaterialModule } from "./shared/material/material.module";
 import { UserManagmentComponent } from './pages/user/user-managment/user-managment.component';
 import { HttpClientModule } from "@angular/common/http";
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { CategoryComponent } from './pages/category/category.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
+import { CategoryManageComponent } from './pages/category/category-manage/category-manage.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    UserManagmentComponent,
+    // UserManagmentComponent,
+    // CategoryComponent,
+    // ActivitiesComponent,
+    // CategoryManageComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -19,6 +19,10 @@ import { VendorManagmentComponent } from 'app/pages/vendor/vendor-managment/vend
 import { MaterialModule } from 'app/shared/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { ActivitiesComponent } from 'app/pages/activities/activities.component';
+import { CategoryManageComponent } from 'app/pages/category/category-manage/category-manage.component';
+import { CategoryComponent } from 'app/pages/category/category.component';
+import { UserManagmentComponent } from 'app/pages/user/user-managment/user-managment.component';
 
 @NgModule({
   imports: [
@@ -40,7 +44,11 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    VendorManagmentComponent
+    VendorManagmentComponent,
+    UserManagmentComponent,
+    CategoryComponent,
+    ActivitiesComponent,
+    CategoryManageComponent,
   ]
 })
 
