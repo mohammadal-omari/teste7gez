@@ -31,17 +31,19 @@ class _MyHomePageState extends State<MyHomePage> {
   late String imageTitle = '';
   late ImageModel imageModel;
   List<ImageModel> images = [];
+  initState() {
+    super.initState();
+    this.fetchImage();
+  }
 
   void fetchImage() async {
-    _counter++;
-    var url = Uri.parse('https://jsonplaceholder.typicode.com/photos/$_counter');
-
-    var response = await get(url);
-    imageModel = ImageModel.fromJson(json.decode(response.body));
-    setState(() => {
-      images.add(imageModel)
-    });
-
+    for (var i = 1; i <= 5; i++) {
+      var url = Uri.parse('https://jsonplaceholder.typicode.com/photos/$i');
+      var response = await get(url);
+      imageModel = ImageModel.fromJson(json.decode(response.body));
+      images.add(imageModel);
+    }
+    setState(() => {images});
   }
 
   void _incrementCounter() {
