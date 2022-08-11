@@ -12,22 +12,45 @@ class ImageList extends StatelessWidget {
         itemCount: images.length,
         itemBuilder: (context, int index) {
           return Container(
-            margin: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+            ),
+            margin: const EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             child: Stack(children: [
-              Image.network(images[index].url),
+              Image.network(images[index].url,
+                  color: const Color.fromRGBO(255, 255, 255, 0.5),
+                  colorBlendMode: BlendMode.modulate),
               Column(
                 children: [
                   Center(
                     child: Text(images[index].title,
-                        style: TextStyle(fontSize: 20)),
+                        style: const TextStyle(fontSize: 20)),
                   ),
-                  const SizedBox(height: 200, width: 200,),
+                  const SizedBox(
+                    height: 200,
+                    width: 200,
+                  ),
                   Container(
-                    color: Colors.orange,
-                    width: 150,
-                    height: 50,
-                    child:
-                        Column(children: [Icon(Icons.restaurant), Text('Reserve Now')]),
+                    width: 300,
+                    margin: const EdgeInsets.only(left: 250),
+                    child: Column(children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.orange),
+                              maximumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(50)),
+                        ),
+                        // ignore: avoid_print
+                        onPressed: () { print(images[index].title); },
+                        child: Column(
+                          children: const [
+                             Icon(Icons.restaurant_menu_outlined),
+                            Text('Reserve Now',textAlign: TextAlign.center),
+                          ],
+                        ),
+                      ),
+                    ]),
                   )
                 ],
               )
