@@ -7,10 +7,10 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 
 import { DashboardComponent }       from '../../pages/dashboard/dashboard.component';
 import { UserComponent }            from '../../pages/user/user.component';
-import { VendorComponent }           from '../../pages/vendor/vendor.component';
+import { VendorComponent }          from '../../pages/vendor/vendor.component';
 import { TypographyComponent }      from '../../pages/typography/typography.component';
 import { IconsComponent }           from '../../pages/icons/icons.component';
-import { MapsComponent }            from '../../pages/maps/maps.component';
+import { FileUploadComponent }      from '../../pages/fileUploader/file-upload.component';
 import { NotificationsComponent }   from '../../pages/notifications/notifications.component';
 import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 
@@ -42,7 +42,7 @@ import { UserManagmentComponent } from 'app/pages/user/user-managment/user-manag
     UpgradeComponent,
     TypographyComponent,
     IconsComponent,
-    MapsComponent,
+    FileUploadComponent,
     NotificationsComponent,
     VendorManagmentComponent,
     UserManagmentComponent,

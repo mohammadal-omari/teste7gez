@@ -10,5 +10,7 @@ export const Controllers = {
   categoryUpdate : environment.api+'/category/update',
   createCategory : environment.api+'/category/create',
   getCategory : environment.api+'/category/get',
+  thumbnailUpload : environment.api+'/thumbnail-upload',
+  getFile : environment.api+'/readFile',
   user : '/user/',
 };

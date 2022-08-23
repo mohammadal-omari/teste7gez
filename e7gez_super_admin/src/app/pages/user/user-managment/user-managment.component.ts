@@ -20,6 +20,7 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
   mode: number = 0;
   userDto: User;
   roles = [{value: ROLE.ADMIN},{value: ROLE.USER}];
+  fileName ='FZn18LQGXrqQGAThvbgeA_OE.jpeg'
 
   constructor(location: Location,private router: Router,private fb: FormBuilder,private toastr: ToastrService,private userServices: UserService, private activatedRoute: ActivatedRoute) {
     super()
