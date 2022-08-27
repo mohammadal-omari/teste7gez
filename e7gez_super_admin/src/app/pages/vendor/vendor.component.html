@@ -120,9 +120,8 @@
                 <td>
                   {{item.point}}
                 </td>
-                <td *ngIf="item.categoryName?.length>0">
-                  <span *ngFor="let cate of item.categoryName"></span>
-                  {{cate.categoryName}}
+                <td *ngIf="item.category?.length>0">
+                  <span *ngFor="let cate of item.category">{{cate?.categoryName}}</span>
                 </td>
                 <td>
                   {{item.dateCreated | date: 'medium'}}

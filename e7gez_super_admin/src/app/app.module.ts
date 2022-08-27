@@ -20,12 +20,14 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import { CategoryComponent } from './pages/category/category.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { CategoryManageComponent } from './pages/category/category-manage/category-manage.component';
+import { LoadFilePipe } from './shared/load-file.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    LoadFilePipe,
     // UserManagmentComponent,
     // CategoryComponent,
     // ActivitiesComponent,

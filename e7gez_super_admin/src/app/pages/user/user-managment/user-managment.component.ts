@@ -7,6 +7,7 @@ import { UserService } from 'app/services/user/user.service';
 import { ROLE } from 'app/shared/enums/roles';
 import { ToastrService } from 'ngx-toastr';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-managment',
@@ -15,12 +16,16 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
   styleUrls: ['./user-managment.component.css']
 })
 export class UserManagmentComponent extends BaseComponent implements OnInit {
+
+  eventsSubject: Subject<any> = new Subject<any>();
+
   location: Location;
   userForm: FormGroup;
   mode: number = 0;
   userDto: User;
   roles = [{value: ROLE.ADMIN},{value: ROLE.USER}];
-  fileName ='FZn18LQGXrqQGAThvbgeA_OE.jpeg'
+  fileName =''
+  file: any;
 
   constructor(location: Location,private router: Router,private fb: FormBuilder,private toastr: ToastrService,private userServices: UserService, private activatedRoute: ActivatedRoute) {
     super()
@@ -40,10 +45,17 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
     if (id != 0) {
       this.mode = 1;
       this.userServices.getById(id)
-        .subscribe(res => { this.userForm.patchValue(res.user); });
+        .subscribe(res => {
+          this.userForm.patchValue(res.user);
+          this.fileName = res.user.imagePath.filePath;
+          this.emitEventToChild(this.fileName)
+        });
     }
   }
 
+  emitEventToChild(value: any) {
+    this.eventsSubject.next(value);
+  }
   private createUserForm() {
     this.userForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
@@ -81,6 +93,7 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
     }
 
     this.userDto = this.userForm.getRawValue();
+    this.userDto.imagePath = this.file;
     console.log(this.userDto);
     if(this.mode == 0) {
       this.userServices.create(this.userDto)
@@ -109,6 +122,10 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
       });
     }
     this.router.navigate(['/user']);
+  }
+
+  handleFileId(e: any){
+    this.file = e;
   }
 
   goBack(): void {

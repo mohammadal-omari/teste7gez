@@ -1,6 +1,7 @@
 <div class="row">
 
   <div class="col-md-4">
+      <file-upload requiredFileType="image/png" [fileNmae]="eventsSubject.asObservable()" (saveFile)="handleFileId($event)"></file-upload>
     <!-- <div class="card card-user">
       <div class="image">
         <img src="assets/img/damir-bosnjak.jpg" alt="...">
@@ -57,7 +58,7 @@
             <div class="row">
               <div class="col-md-2 col-2">
                 <div class="avatar">
-                  <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  <img [src]="item.imagePath?(loadImage(item.imagePath.filePath)):'assets/img/faces/clem-onojeghuo-2.jpg'" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
               </div>
               <div class="col-md-7 col-7">
@@ -114,11 +115,11 @@
               <div class="form-group">
                 <mat-form-field appearance="fill">
                   <mat-label>Categories</mat-label>
-                  <mat-select formControlName="categoryName" multiple (selectionChange)="selectedAdmins($event)">
+                  <mat-select formControlName="category" multiple (selectionChange)="selectedAdmins($event)">
                     <mat-select-trigger>
-                      {{vendorForm.get('categoryName').value?.[0] || ''}}
-                      <span *ngIf="(vendorForm.get('categoryName').value?.length || 0) > 1" class="example-additional-selection">
-                        (+{{(vendorForm.get('categoryName').value?.length || 0) - 1}} {{vendorForm.get('categoryName').value?.length === 2 ? 'other' : 'others'}})
+                      {{vendorForm.get('category').value?.[0] || ''}}
+                      <span *ngIf="(vendorForm.get('category').value?.length || 0) > 1" class="example-additional-selection">
+                        (+{{(vendorForm.get('category').value?.length || 0) - 1}} {{vendorForm.get('category').value?.length === 2 ? 'other' : 'others'}})
                       </span>
                     </mat-select-trigger>
                     <mat-option *ngFor="let item of categories" [value]="item._id">{{item.categoryName}}</mat-option>
@@ -177,7 +178,7 @@
           </mat-form-field>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button (click)="save()" type="submit" class="btn btn-primary btn-round">Save</button>
+              <button (click)="save()" type="submit" class="btn btn-primary btn-round">{{mode==0?'Save':'Update'}}</button>
             </div>
           </div>
         </form>

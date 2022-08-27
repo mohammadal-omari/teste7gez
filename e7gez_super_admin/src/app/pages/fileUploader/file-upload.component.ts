@@ -1,5 +1,5 @@
 import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FileUploadService } from 'app/services/files/file-upload.service';
 import { Controllers } from 'app/shared/api/api';
 import { finalize, Observable, Subscription } from 'rxjs';
@@ -15,9 +15,13 @@ declare var google: any;
 
 export class FileUploadComponent implements OnInit {
 
-  @Input() fileNmae;
+  private eventsSubscription: Subscription;
+
+  @Input() fileNmae: Observable<any>;
   @Input() requiredFileType;
   @Output() fileId;
+  @Output() saveFile = new EventEmitter<string>();
+
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];
 
@@ -30,12 +34,15 @@ export class FileUploadComponent implements OnInit {
   constructor(private uploadService: FileUploadService) { }
 
   ngOnInit(): void {
-    this.previews.push(Controllers.getFile + '/' + this.fileNmae);
-    // this.uploadService.getFiles(this.fileNmae).subscribe(res => {
-    //   this.previews = res;
-    // })
+    this.eventsSubscription =
+    this.fileNmae.subscribe(res => {
+      this.previews.push(Controllers.getFile + '/' + res);
+    });
   }
 
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
+  }
   selectFiles(event: any): void {
     this.message = [];
     this.progressInfos = [];
@@ -49,7 +56,6 @@ export class FileUploadComponent implements OnInit {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-          console.log(e.target.result);
           this.previews.push(e.target.result);
         };
 
@@ -70,6 +76,8 @@ export class FileUploadComponent implements OnInit {
             this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
             const msg = 'Uploaded the file successfully: ' + file.name;
+            console.log(event.body.fileId);
+            this.saveFile.emit(event.body.fileId)
             this.message.push(msg);
             //this.imageInfos = this.uploadService.getFiles();
           }

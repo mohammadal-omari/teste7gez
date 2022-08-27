@@ -7,10 +7,12 @@ import { Item } from 'app/core/models/item';
 import { User } from 'app/core/models/user';
 import { BaseComponent } from 'app/pages/base.component';
 import { CategoryService } from 'app/services/category/category.service';
+import { FileUploadService } from 'app/services/files/file-upload.service';
 import { UserService } from 'app/services/user/user.service';
 import { VendorService } from 'app/services/vendor/vendor.service';
 import { ROLE } from 'app/shared/enums/roles';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-vendor-managment',
@@ -20,18 +22,22 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./vendor-managment.component.css']
 })
 export class VendorManagmentComponent extends BaseComponent implements OnInit {
+  eventsSubject: Subject<any> = new Subject<any>();
+
   location: Location;
   vendorForm: FormGroup;
   mode: number = 0;
   itemDto: Item;
   hasPage = false;
   itemUsers: User[] = [];
+  fileName =''
+  file: any;
   // user = new FormControl('');
 
   users: User[] = [];
   categories: Category[] = [];
 
-  constructor(private categoryService: CategoryService, location: Location,private activatedRoute: ActivatedRoute,private userServices: UserService,private vendorServices: VendorService, private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private fileService: FileUploadService, private categoryService: CategoryService, location: Location,private activatedRoute: ActivatedRoute,private userServices: UserService,private vendorServices: VendorService, private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     super()
     this.location = location;
   }
@@ -63,9 +69,10 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
       this.vendorServices.getById(id)
         .subscribe(res => {
           this.itemUsers = this.users.filter(u => res.item.admins.includes(u._id))
-          console.log(this.itemUsers);
-
           this.vendorForm.patchValue(res.item);
+          this.vendorForm.get('category').setValue(res.item.category.map(c =>c._id))
+          this.fileName = res.item.image.filePath;
+          this.emitEventToChild(this.fileName)
         });
     }
   }
@@ -76,7 +83,7 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
       country: ['', Validators.required],
       city: ['', [Validators.required]],
       menu: [''],
-      categoryName: ['', Validators.required],
+      category: ['', Validators.required],
       point: [0, Validators.required],
       itemNumber: [0, Validators.required],
       locationUrl: [''],
@@ -88,7 +95,12 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
   public selectedAdmins(data: any) {
     // console.log(this.user.value);
   }
-
+  handleFileId(e: any){
+    this.file = e;
+  }
+  emitEventToChild(value: any) {
+    this.eventsSubject.next(value);
+  }
   public save(): any {
     if (this.vendorForm.invalid) {
       Object.keys(this.vendorForm.controls).forEach(key => {
@@ -112,7 +124,11 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
     }
 
     this.itemDto = this.vendorForm.getRawValue();
+    console.log(this.file);
+
+    this.itemDto.image = this.file;
     console.log(this.itemDto);
+
     if(this.mode == 0) {
       this.vendorServices.craete(this.itemDto).subscribe(res => {
         this.toastr.success(
@@ -141,6 +157,13 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
     this.router.navigate(['/vendor']);
   }
 
+  loadImage(fileName: any) {
+    console.log(fileName);
+
+    this.fileService.getFiles(fileName).subscribe(res => {
+      return res;
+    });
+  }
   goBack(): void {
     this.location.back();
   }

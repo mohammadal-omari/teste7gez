@@ -6,11 +6,10 @@ export class User {
   lastname: string;
   token?: string;
   phoneNumber?: string;
-  imagePath?: string;
+  imagePath?: any;
   role?: string;
   point?: number;
   userNumber?: number;
   dateCreated: Date;
   isActive: boolean;
-
 }

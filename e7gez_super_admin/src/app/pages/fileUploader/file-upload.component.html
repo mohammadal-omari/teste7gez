@@ -9,12 +9,7 @@
   </mat-toolbar>
 </div>
 
-<mat-form-field>
-  <div>
-    <mat-toolbar>
-      <input matInput [value]="selectedFileNames.length ? selectedFileNames : 'Select Images'" />
-
-      <button
+<button
         mat-flat-button
         color="primary"
         [disabled]="!selectedFiles"
@@ -22,6 +17,10 @@
       >
         Upload
       </button>
+<mat-form-field>
+  <div>
+    <mat-toolbar>
+      <input matInput [value]="selectedFileNames.length ? selectedFileNames : 'Select Images'" />
     </mat-toolbar>
 
     <input

@@ -33,6 +33,8 @@ export class VendorComponent extends BaseComponent implements OnInit {
 
   loadData() {
     this.venderServices.getAllItems().subscribe(res => {
+      console.log(res);
+
       this.items = res.items;
       this.itemsFiltered = this.items;
     })
