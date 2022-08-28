@@ -157,13 +157,10 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
     this.router.navigate(['/vendor']);
   }
 
-  loadImage(fileName: any) {
-    console.log(fileName);
-
-    this.fileService.getFiles(fileName).subscribe(res => {
-      return res;
-    });
+  edit(user: User): any {
+    this.router.navigate(['/user-managment', user.userNumber]);
   }
+
   goBack(): void {
     this.location.back();
   }

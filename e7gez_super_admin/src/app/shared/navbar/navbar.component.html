@@ -40,15 +40,16 @@
 
         <li class="nav-item btn-rotate" ngbDropdown placement="bottom-left">
           <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink" >
-            <i class="nc-icon nc-bell-55"></i>
+            <i [matBadge]="newMessage" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
             <p>
-              <span class="d-lg-none d-md-block">Some Actions</span>
+              <span class="d-lg-none d-md-block">User feedback</span>
             </p>
           </a>
-          <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
-            <a ngbDropdownItem href="javascript:void(0)">Action</a>
-            <a ngbDropdownItem href="javascript:void(0)">Another action</a>
-            <a ngbDropdownItem href="javascript:void(0)">Something else here</a>
+          <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right" style="overflow-x:visible ;">
+            <a ngbDropdownItem  *ngFor="let f of feeds" (click)="view(f)" >
+              <span *ngIf="f.isActive" matBadge="*" matBadgeColor="warn">{{f.message}}</span>
+              <span *ngIf="!f.isActive">{{f.message}}</span>
+            </a>
           </div>
         </li>
         <li class="nav-item">

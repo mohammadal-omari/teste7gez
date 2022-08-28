@@ -58,7 +58,7 @@
             <div class="row">
               <div class="col-md-2 col-2">
                 <div class="avatar">
-                  <img [src]="item.imagePath?(loadImage(item.imagePath.filePath)):'assets/img/faces/clem-onojeghuo-2.jpg'" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  <img [src]="'assets/img/im-user.png'" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
               </div>
               <div class="col-md-7 col-7">
@@ -69,7 +69,7 @@
                 </span>
               </div>
               <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-eye" (click)="edit(item)"></i></button>
               </div>
             </div>
           </li>
@@ -116,12 +116,6 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Categories</mat-label>
                   <mat-select formControlName="category" multiple (selectionChange)="selectedAdmins($event)">
-                    <mat-select-trigger>
-                      {{vendorForm.get('category').value?.[0] || ''}}
-                      <span *ngIf="(vendorForm.get('category').value?.length || 0) > 1" class="example-additional-selection">
-                        (+{{(vendorForm.get('category').value?.length || 0) - 1}} {{vendorForm.get('category').value?.length === 2 ? 'other' : 'others'}})
-                      </span>
-                    </mat-select-trigger>
                     <mat-option *ngFor="let item of categories" [value]="item._id">{{item.categoryName}}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -167,12 +161,12 @@
           <mat-form-field appearance="fill">
             <mat-label>Admins</mat-label>
             <mat-select formControlName="admins" multiple (selectionChange)="selectedAdmins($event)">
-              <mat-select-trigger>
+              <!-- <mat-select-trigger>
                 {{vendorForm.get('admins').value?.[0] || ''}}
                 <span *ngIf="(vendorForm.get('admins').value?.length || 0) > 1" class="example-additional-selection">
                   (+{{(vendorForm.get('admins').value?.length || 0) - 1}} {{vendorForm.get('admins').value?.length === 2 ? 'other' : 'others'}})
                 </span>
-              </mat-select-trigger>
+              </mat-select-trigger> -->
               <mat-option *ngFor="let user of users" [value]="user._id">{{user.firstname}} - {{user.email}}</mat-option>
             </mat-select>
           </mat-form-field>

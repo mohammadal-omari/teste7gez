@@ -64,9 +64,11 @@ export class UserComponent extends BaseComponent implements OnInit {
   }
 
   filter(): any {
-    console.log(this.emailValue);
+    console.log(this.Rolevalue);
 
-    this.usersFiltered = this.users.filter(user => user.userNumber == this.IDValue || user.email.search(this.emailValue)!=-1 || user.role == this.Rolevalue)
+    this.usersFiltered = this.users.filter(user => user.userNumber == this.IDValue || user.role.search(this.Rolevalue.toString())!=-1 || user.email.search(this.emailValue)!=-1 )
+    console.log(this.usersFiltered);
+
   }
 
   clear(): any {

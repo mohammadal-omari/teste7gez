@@ -21,6 +21,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { CategoryManageComponent } from './pages/category/category-manage/category-manage.component';
 import { LoadFilePipe } from './shared/load-file.pipe';
+import { MessageViewComponent } from './shared/message-view/message-view.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { LoadFilePipe } from './shared/load-file.pipe';
     AppComponent,
     AdminLayoutComponent,
     LoadFilePipe,
+    MessageViewComponent,
     // UserManagmentComponent,
     // CategoryComponent,
     // ActivitiesComponent,
