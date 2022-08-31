@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
 import 'dart:convert';
 import 'package:flutter/src/material/colors.dart';
-import 'package:e7gez/src/widgets/structure.dart';
+import 'package:e7gez/src/widgets/layout.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -31,6 +31,7 @@ class ImgContainer extends StatelessWidget {
               width: 500.0,
               decoration:const BoxDecoration(
                 image:  DecorationImage(
+                  
                   image: NetworkImage(
                       'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2018/10/4/1/FN_chain-restaurant-entrees_Applebees_Bourbon-Street-Chicken-Shrimp_s6x4.jpg.rend.hgtvcom.616.411.suffix/1538685780055.jpeg'),
                   fit: BoxFit.fill,
@@ -48,9 +49,13 @@ class ImgContainer extends StatelessWidget {
                   style:  TextStyle(color: Colors.white , fontSize: 18 , backgroundColor:Color.fromARGB(103, 33, 31, 26)),
                 ))),
                 Padding(
-              padding: const EdgeInsets.fromLTRB(130, 125, 0, 0),
+              padding: const EdgeInsets.fromLTRB(80, 125, 0, 0),
                   child:
                 ElevatedButton(onPressed:() => {}, child: const Text("Press Me")) ),
+                Padding(
+              padding: const EdgeInsets.fromLTRB(180, 125, 0, 0),
+                  child:
+                ElevatedButton(onPressed:() => {}, child: const Text("click Me")) ),
                 ])))
     ]);
   }

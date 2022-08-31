@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
 import 'dart:convert';
 import 'package:flutter/src/material/colors.dart';
-import 'package:e7gez/src/widgets/structure.dart';
+import 'package:e7gez/src/widgets/layout.dart';
 
 
 class UserProfile extends StatelessWidget {
