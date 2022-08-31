@@ -1,4 +1,4 @@
-import 'package:e7gez/src/home.dart';
+import 'package:e7gez/src/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
 import 'dart:convert';

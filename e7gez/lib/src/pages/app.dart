@@ -2,7 +2,7 @@ import 'package:e7gez/src/widgets/image_list.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
 import 'dart:convert';
-import 'models/image_model.dart';
+import 'package:e7gez/src/models/image_model.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
