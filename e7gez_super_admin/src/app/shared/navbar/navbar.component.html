@@ -47,7 +47,7 @@
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right" style="overflow-x:visible ;">
             <a ngbDropdownItem  *ngFor="let f of feeds" (click)="view(f)" >
-              <span *ngIf="f.isActive" matBadge="*" matBadgeColor="warn">{{f.message}}</span>
+              <span *ngIf="f.isActive" matBadge="1" matBadgeColor="warn">{{f.message}}</span>
               <span *ngIf="!f.isActive">{{f.message}}</span>
             </a>
           </div>
