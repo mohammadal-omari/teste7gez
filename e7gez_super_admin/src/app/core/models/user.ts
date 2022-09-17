@@ -2,6 +2,7 @@ export class User {
   _id?: string;
   email: string;
   password: string;
+  NonHashedPassword: string;
   firstname?: string;
   lastname: string;
   token?: string;

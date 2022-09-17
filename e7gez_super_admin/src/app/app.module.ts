@@ -22,6 +22,8 @@ import { ActivitiesComponent } from './pages/activities/activities.component';
 import { CategoryManageComponent } from './pages/category/category-manage/category-manage.component';
 import { LoadFilePipe } from './shared/load-file.pipe';
 import { MessageViewComponent } from './shared/message-view/message-view.component';
+import { ShowPasswordComponent } from './shared/show-password/show-password.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { MessageViewComponent } from './shared/message-view/message-view.compone
     AdminLayoutComponent,
     LoadFilePipe,
     MessageViewComponent,
+    ShowPasswordComponent,
     // UserManagmentComponent,
     // CategoryComponent,
     // ActivitiesComponent,
@@ -44,6 +47,7 @@ import { MessageViewComponent } from './shared/message-view/message-view.compone
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
+    FormsModule,
     FixedPluginModule,
     ReactiveFormsModule,
     MaterialModule,

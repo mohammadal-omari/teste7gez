@@ -107,7 +107,9 @@ export class CategoryManageComponent extends BaseComponent implements OnInit {
           );
       });
     }
-    this.router.navigate(['/categories']);
+    this.router.navigate(['/categories']).then(() => {
+      window.location.reload();
+    });
   }
 
   public selectedCode(data: any) {

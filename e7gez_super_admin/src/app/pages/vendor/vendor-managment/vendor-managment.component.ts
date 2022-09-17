@@ -154,11 +154,13 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
         );
       })
     }
-    this.router.navigate(['/vendor']);
+    this.router.navigate(['/vendor']).then(() => {
+      window.location.reload();
+    });
   }
 
   edit(user: User): any {
-    this.router.navigate(['/user-managment', user.userNumber]);
+    this.router.navigate(['/user-managment', user.userNumber])
   }
 
   goBack(): void {

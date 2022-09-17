@@ -121,7 +121,9 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
           );
       });
     }
-    this.router.navigate(['/user']);
+    this.router.navigate(['/user', {refresh: true}]).then(() => {
+      window.location.reload();
+    });
   }
 
   handleFileId(e: any){
