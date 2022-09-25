@@ -12,7 +12,7 @@ export class ShowPasswordComponent implements OnInit {
   newPassword;
   constructor(
     public dialogRef: MatDialogRef<any>,
-    @Inject(MAT_DIALOG_DATA) public data: User,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   onNoClick(): void {
@@ -20,8 +20,8 @@ export class ShowPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.NonHashedPassword);
-    this.newPassword = this.data.NonHashedPassword
+    console.log(this.data.object.NonHashedPassword);
+    this.newPassword = this.data.object.NonHashedPassword
   }
 
 }

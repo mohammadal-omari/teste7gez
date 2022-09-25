@@ -140,6 +140,9 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
           positionClass: "toast-" + 'top' + "-" + 'right'
         }
         );
+        this.router.navigate(['/vendor']).then(() => {
+          window.location.reload();
+        });
       })
     } else {
       this.vendorServices.update(this.itemDto).subscribe(res => {
@@ -152,11 +155,12 @@ export class VendorManagmentComponent extends BaseComponent implements OnInit {
           positionClass: "toast-" + 'top' + "-" + 'right'
         }
         );
+        this.router.navigate(['/vendor']).then(() => {
+          window.location.reload();
+        });
       })
     }
-    this.router.navigate(['/vendor']).then(() => {
-      window.location.reload();
-    });
+
   }
 
   edit(user: User): any {

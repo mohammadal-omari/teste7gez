@@ -15,7 +15,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "./shared/material/material.module";
 import { UserManagmentComponent } from './pages/user/user-managment/user-managment.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { CategoryComponent } from './pages/category/category.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
@@ -24,6 +24,12 @@ import { LoadFilePipe } from './shared/load-file.pipe';
 import { MessageViewComponent } from './shared/message-view/message-view.component';
 import { ShowPasswordComponent } from './shared/show-password/show-password.component';
 import { FormsModule } from '@angular/forms';
+import { AuthenticationServiceService } from "./services/authentication-service.service";
+import { AuthGuard } from "./core/guard/auth.guard";
+import { AuthInterceptor } from "./services/auth.interceptor";
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { InterceptorService } from "./loader/interceptor.service";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -52,9 +58,15 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    ClipboardModule
+    ClipboardModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationServiceService, AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

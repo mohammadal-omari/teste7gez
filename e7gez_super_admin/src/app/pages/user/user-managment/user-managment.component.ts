@@ -106,8 +106,10 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
             positionClass: "toast-" + 'top' + "-" + 'right',
             toastClass: "alert alert-success alert-with-icon",
 
-          }
-          );
+          });
+          this.router.navigate(['/user', {refresh: true}]).then(() => {
+            window.location.reload();
+          });
       });
     } else {
       this.userServices.update(this.userDto)
@@ -119,11 +121,12 @@ export class UserManagmentComponent extends BaseComponent implements OnInit {
             closeButton: true,
           }
           );
+          this.router.navigate(['/user', {refresh: true}]).then(() => {
+            window.location.reload();
+          });
       });
     }
-    this.router.navigate(['/user', {refresh: true}]).then(() => {
-      window.location.reload();
-    });
+
   }
 
   handleFileId(e: any){

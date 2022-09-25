@@ -79,7 +79,7 @@
                 Deactive
               </th>
               <th class="text-right">
-                Show password
+                 Password
               </th>
               <th class="text-right">
                 Edit
@@ -115,7 +115,7 @@
                   <mat-slide-toggle (click)="deactivate(item)" [(ngModel)]="item.isActive"></mat-slide-toggle>
                 </td>
                 <td class="text-right icons">
-                  <mat-slide-toggle (click)="showPassword(item)" ></mat-slide-toggle>
+                  <i class="fa fa-eye" (click)="showPassword(item)" ></i>
                 </td>
                 <td class="text-right icons">
                   <i class="fa fa-edit fa-lg" (click)="edit(item)"></i>

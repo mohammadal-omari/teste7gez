@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
   public chartHours;
   public users = 0;
   public items = 0;
+  public requests = 0;
+
   constructor(private baseService: BaseService) {
 
   }
@@ -28,6 +30,7 @@ export class DashboardComponent implements OnInit {
       console.log(res);
       this.users = res.users;
       this.items = res.items;
+      this.requests = res.requests;
     })
     this.canvas = document.getElementById("chartHours");
     this.ctx = this.canvas.getContext("2d");
