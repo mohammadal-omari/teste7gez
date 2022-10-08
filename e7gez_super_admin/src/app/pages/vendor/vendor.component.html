@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="update ml-auto mr-auto">
+        <button type="submit" class="btn btn-primary btn-round" [routerLink]="['/vendor-managment']"
+          routerLinkActive="router-link-active">Add vendor <i class="fa fa-plus-circle"></i></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="search">
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="Rolevalue" name="food">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.value}}
+            </mat-option>
+          </mat-select>
+          <button *ngIf="Rolevalue" matSuffix mat-icon-button aria-label="Clear" (click)="Rolevalue=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="nameValue">
+          <button *ngIf="nameValue" matSuffix mat-icon-button aria-label="Clear" (click)="nameValue=''">
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- <mat-icon matSuffix>email</mat-icon> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Item Number</mat-label>
+          <input matInput type="number" placeholder="User Number" [(ngModel)]="IDValue">
+          <button *ngIf="IDValue" matSuffix mat-icon-button aria-label="Clear" (click)="IDValue=0">
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- <mat-icon matSuffix>format_list_numbered</mat-icon> -->
+        </mat-form-field>
+        <button (click)="filter()" mat-mini-fab color="primary" class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button (click)="clear()" mat-mini-fab color="primary" class="search-button">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Vendors </h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Name
+              </th>
+              <th>
+                Country
+              </th>
+              <th>
+                City
+              </th>
+              <th>
+                Menu
+              </th>
+              <th>
+                LocationUrl
+              </th>
+              <th>
+                Point
+              </th>
+              <th>
+                Category Name
+              </th>
+              <th>
+                Date Created
+              </th>
+              <th>
+                Item Number
+              </th>
+              <!-- <th>
+                Is active
+              </th> -->
+              <th class="text-right">
+                Deactive
+              </th>
+              <th class="text-right">
+                Edit
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of itemsFiltered">
+                <td>
+                  {{item.name}}
+                </td>
+                <td>
+                  {{item.city}}
+                </td>
+                <td>
+                  {{item.country}}
+                </td>
+                <td>
+                  <mat-form-field appearance="outline" [style.width.%]="100">
+                    <mat-label>Menu</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="item.menu">
+                    <button mat-icon-button matSuffix [cdkCopyToClipboard]="item.menu">
+                      <mat-icon>file_copy</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance="outline" [style.width.%]="100">
+                    <mat-label>locationUrl</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="item.locationUrl">
+                    <button mat-icon-button matSuffix [cdkCopyToClipboard]="item.locationUrl">
+                      <mat-icon>file_copy</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+                <td>
+                  {{item.point}}
+                </td>
+                <td *ngIf="item.category?.length>0">
+                  <span *ngFor="let cate of item.category">{{cate?.categoryName}}</span>
+                </td>
+                <td>
+                  {{item.dateCreated | date: 'medium'}}
+                </td>
+                <td>
+                  {{item.itemNumber}}
+                </td>
+                <!-- <td>
+                  {{item.isActive?'Active': 'Not'}}
+                </td> -->
+                <td class="text-right icons">
+                  <mat-slide-toggle (click)="deactivate(item)" [(ngModel)]="item.isActive"></mat-slide-toggle>
+                </td>
+                <td class="text-right icons">
+                  <i class="fa fa-edit fa-lg" (click)="edit(item)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

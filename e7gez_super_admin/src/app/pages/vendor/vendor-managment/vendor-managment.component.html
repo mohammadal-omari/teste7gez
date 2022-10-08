@@ -1,0 +1,183 @@
+<div class="row">
+
+  <div class="col-md-4">
+      <file-upload requiredFileType="image/png" [fileNmae]="eventsSubject.asObservable()" (saveFile)="handleFileId($event)"></file-upload>
+    <!-- <div class="card card-user">
+      <div class="image">
+        <img src="assets/img/damir-bosnjak.jpg" alt="...">
+      </div>
+      <div class="card-body">
+        <div class="author">
+          <a href="#">
+            <img class="avatar border-gray" src="assets/img/mike.jpg" alt="...">
+            <h5 class="title">Chet Faker</h5>
+          </a>
+          <p class="description">
+            @chetfaker
+          </p>
+        </div>
+        <p class="description text-center">
+          "I like the way you work it
+          <br> No diggity
+          <br> I wanna bag it up"
+        </p>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="button-container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+              <h5>12
+                <br>
+                <small>Followers</small>
+              </h5>
+            </div>
+            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+              <h5>50
+                <br>
+                <small>Likes</small>
+              </h5>
+            </div>
+            <div class="col-lg-3 mr-auto">
+              <h5>9
+                <br>
+                <small>Posts</small>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+     <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Team Members</h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled team-members">
+          <li *ngFor="let item of itemUsers">
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img [src]="'assets/img/im-user.png'" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+              </div>
+              <div class="col-md-7 col-7">
+                {{item.firstname}}
+                <br />
+                <span class="text-muted">
+                  <small>{{item.isActive?'Online':'Offline'}}</small>
+                </span>
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-eye" (click)="edit(item)"></i></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Vendor details</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="vendorForm">
+          <div class="row">
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control"  placeholder="Name" formControlName="name">
+              </div>
+            </div>
+            <div class="col-md-3 px-1">
+              <div class="form-group">
+                <label>Country</label>
+                <input type="text" class="form-control" placeholder="Country" formControlName="country">
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">City</label>
+                <input type="email" class="form-control" placeholder="City" formControlName="city">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Menu url</label>
+                <input type="text" class="form-control" placeholder="Menu url" formControlName="menu">
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Categories</mat-label>
+                  <mat-select formControlName="category" multiple (selectionChange)="selectedAdmins($event)">
+                    <mat-option *ngFor="let item of categories" [value]="item._id">{{item.categoryName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Location link</label>
+                <input type="text" class="form-control" placeholder="Location link" formControlName="locationUrl">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Vendor Number</label>
+                <input type="text" class="form-control" placeholder="Vendor Number" formControlName="itemNumber" disabled="true">
+              </div>
+            </div>
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <label>Point</label>
+                <input type="number" class="form-control" placeholder="Point" formControlName="point" disabled="true">
+              </div>
+            </div>
+            <!-- <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Postal Code</label>
+                <input type="number" class="form-control" placeholder="ZIP Code">
+              </div>
+            </div> -->
+          </div>
+          <!-- <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>About Me</label>
+                <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
+              </div>
+            </div>
+          </div> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Admins</mat-label>
+            <mat-select formControlName="admins" multiple (selectionChange)="selectedAdmins($event)">
+              <!-- <mat-select-trigger>
+                {{vendorForm.get('admins').value?.[0] || ''}}
+                <span *ngIf="(vendorForm.get('admins').value?.length || 0) > 1" class="example-additional-selection">
+                  (+{{(vendorForm.get('admins').value?.length || 0) - 1}} {{vendorForm.get('admins').value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger> -->
+              <mat-option *ngFor="let user of users" [value]="user._id">{{user.firstname}} - {{user.email}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button (click)="save()" type="submit" class="btn btn-primary btn-round">{{mode==0?'Save':'Update'}}</button>
+            </div>
+          </div>
+        </form>
+        <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+      </div>
+    </div>
+  </div>
+</div>
