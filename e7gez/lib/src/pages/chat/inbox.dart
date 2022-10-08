@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 class Inbox extends StatefulWidget {
   @override
@@ -29,7 +30,13 @@ class _InboxState extends State<Inbox> {
               child: Text("Mostafa", style: TextStyle(fontSize: 15)))
             ]
           ),
-            actions: const <Widget>[
+            actions:  <Widget>[
+              Padding(padding: const EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: const Icon(Icons.more_vert, size: 30.0),
+                
+              ),)
 
             ]
         ),
