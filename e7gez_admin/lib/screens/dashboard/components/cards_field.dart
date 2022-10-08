@@ -22,19 +22,19 @@ class CardsField extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Statistic's",
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.subtitle1!.apply(color: primaryColor),
             ),
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical: defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
-              ),
-              onPressed: () {},
-              icon: const Icon(Icons.add),
-              label: const Text("Add New"),
-            ),
+            // ElevatedButton.icon(
+            //   style: TextButton.styleFrom(
+            //     padding: EdgeInsets.symmetric(
+            //       horizontal: defaultPadding * 1.5,
+            //       vertical: defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+            //     ),
+            //   ),
+            //   onPressed: () {},
+            //   icon: const Icon(Icons.add),
+            //   label: const Text("Add New"),
+            // ),
           ],
         ),
         const SizedBox(height: defaultPadding),

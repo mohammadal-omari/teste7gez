@@ -13,3 +13,5 @@ const c3 =Color(0xFFF9F8FD);
 
 const testColor =Color.fromARGB(255, 109, 109, 109);
 // const textColor =Color.fromARGB(255, 20, 189, 4);
+const isDevlopment=true;
+const monthNames=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

@@ -3,6 +3,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:e7gez_admin/constants.dart';
 import 'package:e7gez_admin/controllers/MenuController.dart';
 import 'package:e7gez_admin/responsive.dart';
+import 'package:e7gez_admin/screens/dashboard/components/chart.dart';
 import 'package:e7gez_admin/widgets/side_menu/side_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,7 @@ import 'components/cards_field.dart';
 import 'components/recent_reservations.dart';
 
 class DashboardScreen extends StatelessWidget {
-
+static const routeName = '/dashbord';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +55,8 @@ class DashboardScreenPage extends StatelessWidget {
         child: Column(
           children:  const [
              Header(),
+            //  SizedBox(height: defaultPadding),
+            //  Chart(),
              SizedBox(height: defaultPadding),
              CardsField(),
              SizedBox(height: defaultPadding),
