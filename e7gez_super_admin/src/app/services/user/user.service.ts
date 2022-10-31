@@ -12,18 +12,18 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   create(userDto: User): any {
-    return this.http.post<{message: any}>(Controllers.createUser,{userDto});
+    return this.http.post<{ message: any }>(`${environment.api}` + Controllers.createUser, { userDto });
   }
 
   update(userDto: User): any {
-    return this.http.post<{message: any}>(Controllers.userUpdate,{userDto});
+    return this.http.post<{ message: any }>(`${environment.api}` + Controllers.userUpdate, { userDto });
   }
 
   getAllUsers(): any {
-    return this.http.get<{users: User[]}>(Controllers.getUser);
+    return this.http.get<{ users: User[] }>(`${environment.api}` + Controllers.getUser);
   }
 
   getById(id: any): any {
-    return this.http.get<{users: User}>(Controllers.getUser + '/' + id);
+    return this.http.get<{ users: User }>(`${environment.api}` + Controllers.getUser + '/' + id);
   }
 }

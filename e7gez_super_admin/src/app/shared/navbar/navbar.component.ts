@@ -6,6 +6,7 @@ import { BaseService } from 'app/services/base.service';
 import { Feed } from 'app/core/models/feed';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageViewComponent } from '../message-view/message-view.component';
+import { AuthenticationServiceService } from 'app/services/authentication-service.service';
 
 @Component({
   moduleId: module.id,
@@ -24,7 +25,8 @@ export class NavbarComponent implements OnInit {
   public newMessage = 0;
   @ViewChild("navbar-cmp", { static: false }) button;
 
-  constructor(public dialog: MatDialog, private baseService: BaseService, location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router) {
+  constructor(public dialog: MatDialog, private baseService: BaseService,
+    private autServices: AuthenticationServiceService, location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router) {
     this.location = location;
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
@@ -119,5 +121,9 @@ export class NavbarComponent implements OnInit {
       this.feeds = res.Feeds;
       this.newMessage = this.feeds.filter(f => f.isActive == true).length;
     })
+  }
+
+  logout() {
+    this.autServices.logout();
   }
 }

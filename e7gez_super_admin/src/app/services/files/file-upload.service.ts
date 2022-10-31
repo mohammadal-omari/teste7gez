@@ -1,6 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Controllers } from 'app/shared/api/api';
+import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class FileUploadService {
 
     formData.append('thumbnail', file);
 
-    const req = new HttpRequest('POST', `${Controllers.thumbnailUpload}`, formData, {
+    const req = new HttpRequest('POST', `${environment.api}`+`${Controllers.thumbnailUpload}`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -26,6 +27,6 @@ export class FileUploadService {
   }
 
   getFiles(fileNmae: string): any {
-    return this.http.get(`${Controllers.getFile}/${fileNmae}`);
+    return this.http.get(`${environment.api}`+`${Controllers.getFile}/${fileNmae}`);
   }
 }
