@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-session": "^1.17.1",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend_start": "node index.js",
+    "dev": "nodemon index.js",
+    "start": "node server.js"
+  },
+  "author": "Mostafa almomani",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
