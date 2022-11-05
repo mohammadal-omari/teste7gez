@@ -1,8 +1,8 @@
 function loadConfig(callb:Function): any {
   let href: string = document.location.origin;
-  if (document.location.href.toLowerCase().includes("admin")){
-    href += '/admin';
-  }
+  // if (document.location.href.toLowerCase().includes("e7jez-super-admin")){
+  //   href += '/admin';
+  // }
   const http = new XMLHttpRequest();
   http.onload = function() {
     const envObj: any =JSON.parse(this.responseText);
