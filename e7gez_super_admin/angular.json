@@ -69,14 +69,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pd-free-angularcli:build"
+            "browserTarget": "e7jez-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pd-free-angularcli:build:production"
+              "browserTarget": "e7jez-admin:build:production"
             },
             "development": {
-              "browserTarget": "pd-free-angularcli:build:development"
+              "browserTarget": "e7jez-admin:build:development"
             },
             "defaultConfiguration": "development"
           }
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pd-free-angularcli:build"
+            "browserTarget": "e7jez-admin:build"
           }
         },
         "test": {
@@ -135,7 +135,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "pd-free-angularcli:serve"
+            "devServerTarget": "e7jez-admin:serve"
           }
         },
         "lint": {
@@ -150,7 +150,7 @@
       }
     }
   },
-  "defaultProject": "pd-free-angularcli",
+  "defaultProject": "e7jez-admin",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
