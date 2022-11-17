@@ -109,16 +109,16 @@ export class AuthenticationServiceService {
 
 
   logout(): void {
-    this.http.get<{ isLoggedOut: boolean }>(`${environment.api}logout`).subscribe(res => {
-      sessionStorage.removeItem('currentTeacher');
-      sessionStorage.removeItem('token');
-      sessionStorage.removeItem('expiration');
-      sessionStorage.removeItem('firstname');
-      sessionStorage.removeItem('duration');
-      this.currentUserSubject.next(null);
-      location.reload();
-    });
+    sessionStorage.removeItem('currentTeacher');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('expiration');
+    sessionStorage.removeItem('firstname');
+    sessionStorage.removeItem('duration');
+    this.currentUserSubject.next(null);
     this.openSnackBar('انتهت الجلسة', 'err-snackbar');
+
+    location.reload();
+
   }
 
   openSnackBar(message: string, syle: string): void {

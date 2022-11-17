@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'app/core/models/user';
 import { UserService } from 'app/services/user/user.service';
@@ -7,6 +7,9 @@ import { BaseComponent } from '../base.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowPasswordComponent } from 'app/shared/show-password/show-password.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'user-cmp',
@@ -15,7 +18,7 @@ import { ShowPasswordComponent } from 'app/shared/show-password/show-password.co
   styleUrls: ['user.component.css']
 })
 
-export class UserComponent extends BaseComponent implements OnInit {
+export class UserComponent extends BaseComponent implements OnInit,AfterViewInit  {
 
   roles = [{ value: ROLE.ADMIN }, { value: ROLE.USER }];
   public users: User[] = [];
@@ -25,10 +28,14 @@ export class UserComponent extends BaseComponent implements OnInit {
   IDValue = 0;
   Rolevalue = '';
   refresh: any;
+  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'role', 'phoneNumber', 'userNumber' ,'dateCreated', 'deactivate', 'showPassword', 'edit'];
+  dataSource: MatTableDataSource<any>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(public dialog: MatDialog, private activatedRoute: ActivatedRoute, private userServices: UserService, private router: Router, private toastr: ToastrService) {
     super();
-
+    this.dataSource = new MatTableDataSource(this.users);
   }
 
   ngOnInit() {
@@ -62,6 +69,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   getAllUsers(): any {
     this.userServices.getAllUsers()
       .subscribe(arg => {
+        this.dataSource.data = arg.users;
         this.users = arg.users;
         this.usersFiltered.push(...this.users);
 
@@ -72,9 +80,9 @@ export class UserComponent extends BaseComponent implements OnInit {
 
   filter(): any {
     console.log(this.Rolevalue);
-
-    this.usersFiltered = this.users.filter(user => user.userNumber == this.IDValue || user.role.search(this.Rolevalue.toString()) != -1 || user.email.search(this.emailValue) != -1)
-    console.log(this.usersFiltered);
+//user.userNumber == this.IDValue || || user.email.search(this.emailValue) != -1
+    this.usersFiltered = this.users.filter(user =>  user.role.search(this.Rolevalue.toString()) != -1 )
+    this.dataSource.data = this.usersFiltered;
 
   }
 
@@ -94,6 +102,20 @@ export class UserComponent extends BaseComponent implements OnInit {
   }
 
   clear(): any {
-    this.usersFiltered = this.users;
+    this.dataSource.data = this.users;
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pd-free-angularcli": {
+    "e7jez-admin": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -126,7 +126,7 @@
         }
       }
     },
-    "pd-free-angularcli-e2e": {
+    "e7jez-admin-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
