@@ -16,7 +16,7 @@ export const ROUTES: RouteInfo[] = [
   //{ path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
   { path: '/user', title: 'Users', icon: 'nc-single-02', class: '' },
   // { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
-  { path: '/upgrade', title: 'Admin settings', icon: 'nc-spaceship', class: 'active-pro' },
+  // { path: '/upgrade', title: 'Admin settings', icon: 'nc-spaceship', class: 'active-pro' },
 ];
 
 @Component({
