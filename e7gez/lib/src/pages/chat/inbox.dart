@@ -80,7 +80,42 @@ class _InboxState extends State<Inbox> {
                  
                   ),
               );
-             },)
+             },),
+             Align(
+              alignment: Alignment.bottomLeft,
+              child: Container(
+                padding: EdgeInsets.only(left: 10, bottom: 10.0, top: 10.0),
+                height: 60,
+                width: double.infinity,
+                color: Colors.white,
+                child: Row(children: <Widget>[
+                  GestureDetector(
+                    onTap: (() {
+                      
+                    }),
+                    child: Container(height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(color: Colors.lightBlue,
+                    borderRadius: BorderRadius.circular(30)),
+                    child: Icon(Icons.add,color: Colors.white, size: 20,) ,
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(decoration: InputDecoration(hintText: "Write a messag ...",
+                    hintStyle: TextStyle(color: Colors.black54),
+                    border: InputBorder.none)),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  FloatingActionButton(onPressed: (){},
+                  child: Icon(Icons.send, color: Colors.white, size: 18,),
+                  backgroundColor: Color(0xFF1EA955),
+                  elevation: 1,
+                  )
+                ]),
+              ),
+             )
         ]),
       ),
     );
