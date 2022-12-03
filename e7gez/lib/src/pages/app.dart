@@ -1,11 +1,15 @@
 import 'package:e7gez/src/widgets/image_list.dart';
+import 'package:e7gez/store/reducer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
 import 'dart:convert';
 import 'package:e7gez/src/models/image_model.dart';
+import 'package:redux/redux.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+
+  final Store<AppState> store;
+  const MyApp({Key? key, required this.store}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
