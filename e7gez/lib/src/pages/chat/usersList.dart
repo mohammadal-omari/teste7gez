@@ -38,19 +38,19 @@ class ChatList extends StatefulWidget {
 
 class _ChatListState extends State<ChatList> {
   int count = 0;
-  List<UserModel> users = [];
-  late UserModel user;
+  List<User> users = [];
+  late User user;
 
   // https://jsonplaceholder.typicode.com/users
 
-  Future<List<UserModel>> _getUsers() async {
+  Future<List<User>> _getUsers() async {
     var url = Uri.parse('https://jsonplaceholder.typicode.com/users');
     var data = await http.get(url);
     var dataList = json.decode(data.body);
 
     for (var element in dataList) {
       //print(element);
-      users.add(UserModel.fromJson(element));
+      users.add(User.fromJson(element));
     }
     return users;
   }
@@ -64,7 +64,7 @@ class _ChatListState extends State<ChatList> {
       child: FutureBuilder(
         future: _getUsers(),
         builder:
-            (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
+            (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
           if (!snapshot.hasData) {
             return isNoData();
           } else {
@@ -80,13 +80,13 @@ class _ChatListState extends State<ChatList> {
                       child: ListTile(
                     leading: CircleAvatar(
                       backgroundColor: getRandomColor(),
-                      child: Text(snapshot.data![index].firstname
+                      child: Text(snapshot.data![index].name
                           .substring(0, 2)
                           .toUpperCase()),
                     ),
-                    title: Text(snapshot.data![index].firstname),
+                    title: Text(snapshot.data![index].name),
                     subtitle: Text(
-                      '${snapshot.data![index].firstname} is on E7GEZ',
+                      '${snapshot.data![index].name} is on E7GEZ',
                       style: const TextStyle(fontSize: 12.0),
                     ),
                     trailing: Column(

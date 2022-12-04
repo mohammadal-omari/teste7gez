@@ -4,8 +4,9 @@ import 'dart:convert';
 import 'package:flutter/src/material/colors.dart';
 import 'package:e7gez/src/widgets/layout.dart';
 
-
 class UserProfile extends StatelessWidget {
+  static const routeName = '/profile';
+
   const UserProfile({Key? key}) : super(key: key);
 
   @override
@@ -17,11 +18,10 @@ class UserProfile extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: Body(title: 'Edit Profile Details' ,  mainWidget: Inputs()),
+      home: Body(title: 'Edit Profile Details', mainWidget: Inputs()),
     );
   }
 }
-
 
 class Inputs extends StatelessWidget {
   @override
@@ -61,7 +61,6 @@ class Inputs extends StatelessWidget {
               initialValue: "email@gmail.com",
               readOnly: true,
               style: TextStyle(color: Color.fromARGB(255, 129, 129, 129)),
-              
             ),
           ),
           Padding(

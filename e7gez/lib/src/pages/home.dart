@@ -6,6 +6,9 @@ import 'package:e7gez/src/widgets/layout.dart';
 import 'package:e7gez/src/widgets/imageContainer.dart';
 
 class Homepage extends StatelessWidget {
+
+  static const routeName = '/homepage';
+
   const Homepage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

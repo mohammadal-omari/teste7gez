@@ -7,11 +7,12 @@ import 'dart:convert';
 import 'package:e7gez/src/widgets/layout.dart';
 import 'package:redux/redux.dart';
 
+import '../../../store/actions.dart';
 import '../../../store/reducer.dart';
 
 class ChatWidget extends StatelessWidget {
-
   final Store<AppState> store;
+  static const routeName = '/chat';
 
   ChatWidget({Key? key, required this.store}) : super(key: key);
 
@@ -20,15 +21,17 @@ class ChatWidget extends StatelessWidget {
     // TODO: implement build
     // throw UnimplementedError();
 
-    return StoreProvider(store: store, child: MaterialApp(
-      title: 'CHAT WITH E7GEZ',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Body(title: 'CHAT WITH E7GEZ', mainWidget: Chat()),
-    ));
-    // return 
+    return StoreProvider(
+        store: store,
+        child: MaterialApp(
+          title: 'CHAT WITH E7GEZ',
+          theme: ThemeData(
+            primarySwatch: Colors.green,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: Body(title: 'CHAT WITH E7GEZ', mainWidget: Chat()),
+        ));
+    // return
   }
 }
 
@@ -59,45 +62,36 @@ class Chat extends StatelessWidget {
       ),
       body:  UsersList(name: "Aya", count: 1),
       floatingActionButton: StoreConnector<AppState, IncrementCounter>(
-            converter: (store) => () => store.dispatch(Types.Increment),
-            builder: (_, IncrementCallBack) {
-              return  new FloatingActionButton(
+        converter: (store) => () => store.dispatch(getRandomNumber),
+        builder: (_, IncrementCallBack) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FloatingActionButton(
+                onPressed: () => {},
+                heroTag: null,
+                child: StoreConnector<AppState, int>(
+                  converter: (store) => store.state.count,
+                  builder: (_, count) {
+                    return Text('$count');
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              FloatingActionButton(
                 onPressed: IncrementCallBack,
-                tooltip: "Increment",
-                child: new Icon(Icons.add),);
-            },
-          ),
-          
-      //  Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: <Widget>[
-      //     StoreConnector<AppState, int>(
-      //       converter: (store) => store.state.count,
-      //       builder: (_, count) {
-      //         return  Text('$count');
-      //       },
-      //     ),
-      //     FloatingActionButton(
-      //       onPressed: () => {},
-      //       heroTag: null,
-      //       child: const Icon(
-      //         Icons.photo,
-      //         color: Colors.black87,
-      //       ),
-      //     ),
-      //     const SizedBox(
-      //       height: 12,
-      //     ),     
-      //      FloatingActionButton(
-      //       onPressed: () => {},
-      //       heroTag: null,
-      //       child: const Icon(
-      //         Icons.edit,
-      //         color: Colors.black87,
-      //       ),
-      //     )
-      //   ],
-      // ),
+                heroTag: null,
+                child: const Icon(
+                  Icons.edit,
+                  color: Colors.black87,
+                ),
+              )
+            ],
+          );
+        },
+      ),
     ));
   }
 }

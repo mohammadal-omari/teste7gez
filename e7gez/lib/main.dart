@@ -13,5 +13,5 @@ final store = Store<AppState>(reducers,
     initialState: AppState(count: 22, clickCount: 0, quote: "Test"),
     middleware: [thunkMiddleware]);
 // void main() => runApp(const UserProfile());
-// void main() => runApp(const Homepage());
+// void main() => runApp(const Homepage()); 
 void main() => runApp(ChatWidget(store: store,));
