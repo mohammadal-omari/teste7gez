@@ -1,9 +1,10 @@
 <div class="row">
-<div class="col-md-4">
-  <file-upload requiredFileType="image/png" [fileNmae]="eventsSubject.asObservable()" (saveFile)="handleFileId($event)"></file-upload>
-</div>
+  <div class="col-md-4">
+    <file-upload requiredFileType="image/png" [fileNmae]="eventsSubject.asObservable()"
+      (saveFile)="handleFileId($event)"></file-upload>
+  </div>
   <!-- <div class="col-md-4"> -->
-    <!-- <div class="card card-user">
+  <!-- <div class="card card-user">
       <div class="image">
         <img src="assets/img/damir-bosnjak.jpg" alt="...">
       </div>
@@ -49,7 +50,7 @@
         </div>
       </div>
     </div> -->
-    <!-- <div class="card">
+  <!-- <div class="card">
       <div class="card-header">
         <h4 class="card-title">Team Members</h4>
       </div>
@@ -127,7 +128,7 @@
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>First name</label>
-                <input type="text" class="form-control"  placeholder="firs tname" formControlName="firstname">
+                <input type="text" class="form-control" placeholder="firs tname" formControlName="firstname">
               </div>
             </div>
             <div class="col-md-6 px-1">
@@ -143,15 +144,9 @@
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" placeholder="Email" formControlName="email">
               </div>
+            </div>
           </div>
-            <!-- <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <label>Password</label>
-                <input type="text" class="form-control" placeholder="Password" formControlName="password">
-              </div>
-            </div> -->
-          </div>
-           <div class="row">
+          <div class="row">
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>Phone Number</label>
@@ -164,19 +159,40 @@
                 <input type="text" class="form-control" placeholder="User Number" formControlName="userNumber">
               </div>
             </div>
-           </div>
-           <div class="row">
-            <div class="col-md-12 pl-1">
-              <mat-form-field appearance="fill">
-                <mat-label>Role</mat-label>
-                <mat-select formControlName="role" name="food">
-                  <mat-option *ngFor="let role of roles" [value]="role.value">
-                    {{role.value}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Role</mat-label>
+                  <mat-select formControlName="role" name="food">
+                    <mat-option *ngFor="let role of roles" [value]="role.value">
+                      {{role.value}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Vendor</mat-label>
+                  <mat-select [formControl]="userForm.get('vendorId')" name="food" #singleSelect>
+                    <!-- <mat-option>
+                      <ngx-mat-select-search [formControl]="keyFilterCtrl"></ngx-mat-select-search>
+                    </mat-option> -->
+
+                    <mat-option *ngFor="let v of venders" [value]="v._id">
+                      {{v.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
           </div>
+          <!-- <div class="row">
+            <app-mat-list-with-search formGroupName="userForm"></app-mat-list-with-search>
+          </div> -->
           <!-- <div class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
@@ -207,7 +223,8 @@
           </div> -->
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button (click)="save()" type="submit" class="btn btn-primary btn-round">{{mode==0?'Save':'Update'}}</button>
+              <button (click)="save()" type="submit"
+                class="btn btn-primary btn-round">{{mode==0?'Save':'Update'}}</button>
             </div>
           </div>
         </form>

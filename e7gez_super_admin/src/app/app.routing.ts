@@ -7,13 +7,8 @@ export const AppRoutes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-  },
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    canActivate: [AuthGuard],
-    pathMatch: 'full',
-  }, {
+  }
+  , {
     path: '',
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
@@ -25,7 +20,6 @@ export const AppRoutes: Routes = [
   },
   {
     path: '**',
-    canActivate: [AuthGuard],
     redirectTo: 'dashboard'
   }
 ]

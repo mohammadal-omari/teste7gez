@@ -13,4 +13,5 @@ export class User {
   userNumber?: number;
   dateCreated: Date;
   isActive: boolean;
+  vendorId: string;
 }

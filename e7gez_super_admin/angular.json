@@ -53,16 +53,10 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "buildOptimizer": false,
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": false,
-                  "inlineCritical": true
-                },
-                "fonts": true
-              },
-              "outputHashing": "all"
+              "buildOptimizer": true,
+              "optimization": false,
+              "outputHashing": "all",
+              "aot": true
             }
           }
         },
@@ -78,7 +72,9 @@
             "development": {
               "browserTarget": "e7jez-admin:build:development"
             },
-            "defaultConfiguration": "development"
+            "defaultConfiguration": {
+              "browserTarget": "development"
+            }
           }
         },
         "extract-i18n": {

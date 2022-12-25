@@ -30,6 +30,7 @@ import { AuthInterceptor } from "./services/auth.interceptor";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { InterceptorService } from "./loader/interceptor.service";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { MatListWithSearchComponent } from './shared/mat-list-with-search/mat-list-with-search.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     LoadFilePipe,
     MessageViewComponent,
     ShowPasswordComponent,
+    MatListWithSearchComponent,
     // UserManagmentComponent,
     // CategoryComponent,
     // ActivitiesComponent,

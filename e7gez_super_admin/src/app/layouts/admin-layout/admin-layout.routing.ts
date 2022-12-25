@@ -13,7 +13,7 @@ import { CategoryManageComponent } from 'app/pages/category/category-manage/cate
 import { CategoryComponent } from 'app/pages/category/category.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
+    { path: '',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
     { path: 'vendor',          component: VendorComponent },
     { path: 'categories',     component: CategoryComponent },
