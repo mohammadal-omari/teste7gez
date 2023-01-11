@@ -36,6 +36,7 @@ import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 // import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 // import { NgxSpinnerModule } from "ngx-spinner";
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [],
@@ -75,7 +76,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatNativeDateModule,
     // NgxMaterialTimepickerModule,
     // NgxSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxMatSelectSearchModule
 
   ],
   exports: [
@@ -113,7 +115,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
    ,MatNativeDateModule,
   //  NgxMaterialTimepickerModule,
   //  NgxSpinnerModule,
-   MatPaginatorModule
+   MatPaginatorModule,
+   NgxMatSelectSearchModule
   ],
   providers: [MatNativeDateModule, MatDatepickerModule]
 })

@@ -1,0 +1,17 @@
+<h3>Single selection</h3>
+<p [formGroup]="form">
+  <mat-form-field>
+    <mat-select [formControl]="bankCtrl" [formControlName]="controlName" placeholder="{{title}}" #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+      </mat-option>
+
+      <mat-option *ngFor="let item of filteredBanks | async" [value]="item._id">
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+<p>
+  Selected Bank: {{bankCtrl.value?.name}}
+</p>
