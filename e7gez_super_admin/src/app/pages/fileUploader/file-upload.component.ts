@@ -2,6 +2,7 @@ import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FileUploadService } from 'app/services/files/file-upload.service';
 import { Controllers } from 'app/shared/api/api';
+import { environment } from 'environments/environment';
 import { finalize, Observable, Subscription } from 'rxjs';
 
 declare var google: any;
@@ -36,7 +37,7 @@ export class FileUploadComponent implements OnInit {
   ngOnInit(): void {
     this.eventsSubscription =
     this.fileNmae.subscribe(res => {
-      this.previews.push(Controllers.getFile + '/' + res);
+      this.previews.push(environment.api + Controllers.getFile + '/' + res);
     });
   }
 
