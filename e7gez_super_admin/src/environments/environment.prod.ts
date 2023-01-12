@@ -14,7 +14,7 @@ function loadConfig(callb:Function): any {
   }
   console.log(href);
 
-http.open("GET", `${href}/assets/env.prod.json`);
+http.open("GET", `${href}/assets/env.production.json`);
 http.send();
 }
 
